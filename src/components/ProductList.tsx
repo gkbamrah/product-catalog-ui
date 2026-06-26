@@ -10,9 +10,11 @@ export const ProductList: React.FC = () => {
 
     const fetchProducts = async () => {
         try {
-            const response = await fetch('http://localhost:8000/api/products/')
+            const response = await fetch(`http://127.0.0.1:8000/products/api/`)
             const data = await response.json()
             setProducts(data)
+            console.log('Fetched products:', data) // Log the fetched data
+            console.log('Hello')
         } catch (error) {
             setError('Failed to fetch products')
         } finally {
