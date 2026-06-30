@@ -1,18 +1,26 @@
 import React from 'react'
 import type { Product } from '@/types/Product'
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "@/components/ui/card"
 
 export const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
   return (
-    <div className="product-card">
-      <h2>{product.name}</h2>
-      <p>{product.description}</p>
-      <p>Price: {product.price}</p>
-      <p>Category: {product.category ? product.category.name : 'N/A'}</p>
-      <div className="tags">
-        {product.tags.map((tag) => (
-          <span key={tag.id} className="tag">{tag.name}</span>
-        ))}
-      </div>
-    </div>
+    <Card className="w-80 border border-solid">
+      <CardHeader>
+        <CardTitle>{product.name}</CardTitle>
+        <CardDescription>{product.category?.name}</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <p>{product.description}</p>
+      </CardContent>
+      <CardContent>
+        <p>Price: ${product.price}</p>
+      </CardContent>
+    </Card>
   )
 }
