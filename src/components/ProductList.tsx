@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { ProductCard } from './ProductCard'
 import type { Product } from '@/types/Product'
+import.meta.env.VITE_API_URL
 
 export const ProductList: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([])
@@ -10,12 +11,13 @@ export const ProductList: React.FC = () => {
 
     const fetchProducts = async () => {
         try {
-            const response = await fetch(`http://127.0.0.1:8000/products/api/`)
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/products/api/`)
             const data = await response.json()
             setProducts(data)
             console.log('Fetched products:', data) // Log the fetched data
             console.log('Hello')
         } catch (error) {
+            console.log('Error fetching products:', error)
             setError('Failed to fetch products')
         } finally {
             setLoading(false)
