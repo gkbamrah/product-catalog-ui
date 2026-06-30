@@ -13,11 +13,8 @@ export const ProductList: React.FC = () => {
         try {
             const response = await fetch(`${import.meta.env.VITE_API_URL}/products/api/`)
             const data = await response.json()
-            setProducts(data)
-            console.log('Fetched products:', data) // Log the fetched data
-            console.log('Hello')
+
         } catch (error) {
-            console.log('Error fetching products:', error)
             setError('Failed to fetch products')
         } finally {
             setLoading(false)
