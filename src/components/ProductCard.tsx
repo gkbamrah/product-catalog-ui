@@ -10,16 +10,16 @@ import {
 
 export const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
   return (
-    <Card className="w-80 border border-solid">
+    <Card className="w-full border border-solid mx-auto ">
       <CardHeader>
         <CardTitle>{product.name}</CardTitle>
-        <CardDescription>{product.category?.name}</CardDescription>
+        <CardDescription className='line-clamp-3'>{product.category?.name}</CardDescription>
       </CardHeader>
       <CardContent>
         <p>{product.description}</p>
       </CardContent>
       <CardContent>
-        <p>Price: ${product.price}</p>
+        <p className="font-semibold text-md">Price: ${product.price}</p>
       </CardContent>
     </Card>
   )

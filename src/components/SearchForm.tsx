@@ -10,13 +10,14 @@ import {
 } from "@/components/ui/select"
 import { useEffect, useState } from "react"
 
-export function SearchForm({ onSubmit }: { onSubmit: (params: { search: string; category: string }) => void }) {
+export const SearchForm:  React.FC<{ onSubmit: (params: { search: string; category: string }) => void }> = ({ onSubmit }) => {
   const [search, setSearch] = useState("")
   const [category, setCategory] = useState("")
-  const [categories, setCategories] = useState([])
+  const [categories, setCategories] = useState<any[]>([])
+    const inputWrapperClass = "flex-1 min-w-[200px]"
 
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault()  // prevents page reload
     onSubmit({ search, category })
   }
@@ -35,30 +36,32 @@ export function SearchForm({ onSubmit }: { onSubmit: (params: { search: string; 
   }, [])
 
   return (
-    <form onSubmit={handleSubmit}>
-      <Label htmlFor="search">Search</Label>
-      <Input
-        id="search"
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        placeholder="Search products..."
-      />
-
-      <Label htmlFor="category">Category</Label>
-      <Select onValueChange={(value) => setCategory(value)}>
-        <SelectTrigger>
-          <SelectValue placeholder="Select a category" />
-        </SelectTrigger>
-        <SelectContent>
-          {categories?.map((cat) => (
-            <SelectItem key={cat.id} value={cat.name}>
-              {cat.name}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
-
-      <Button type="submit">Search</Button>
+    <form onSubmit={handleSubmit} className="flex flex-wrap md:flex-nowrap gap-3 my-4 items-center justify-between">
+        <div className={inputWrapperClass}>
+            <Label htmlFor="search" className="sr-only">Search</Label>
+            <Input
+                id="search"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                placeholder="Search products..."
+            />
+        </div>
+        <div className={inputWrapperClass}>
+            <Label htmlFor="category" className="sr-only">Category</Label>
+            <Select onValueChange={(value) => setCategory(value)} >
+                <SelectTrigger className="w-full">
+                    <SelectValue placeholder="Select a category" />
+                </SelectTrigger>
+                <SelectContent>
+                {categories?.map((cat) => (
+                    <SelectItem key={cat.id} value={cat.id.toString()}>
+                    {cat.name}
+                    </SelectItem>
+                ))}
+                </SelectContent>
+            </Select>
+        </div>
+      <Button className="w-full md:w-auto" type="submit">Search</Button>
     </form>
   )
 }

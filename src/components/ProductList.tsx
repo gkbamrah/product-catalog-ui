@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { ProductCard } from './ProductCard'
 import type { Product } from '@/types/Product'
-import { Search } from 'lucide-react'
 import { SearchForm } from './SearchForm'
 import.meta.env.VITE_API_URL
 
@@ -27,7 +26,7 @@ export const ProductList: React.FC = () => {
         fetchProducts()
     }, [])
 
-    const searchParams = async ({ search, category }) => {
+    const searchParams = async ({ search, category }: { search: string; category: string }) => {
         setLoading(true)
         setError(null)
         try {
@@ -39,29 +38,28 @@ export const ProductList: React.FC = () => {
             const data = await response.json()
             setProducts(data)
         } catch (error) {
-            setError('Failed to fetch products')
+            setError('Failed to fetch products' + error)
         } finally {
             setLoading(false)
         }
     }
 
-    if (loading) {
-        return <p>Loading products...</p>
-    }
-
-    if (error) {
-        return <p>{error}</p>
-    }
 
     return (
-        <>  
-            <SearchForm onSubmit={searchParams}/>
-            <div className="product-list grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {products.map((product) => (
-                    <ProductCard key={product.id} product={product} />
+        <div className="max-w-5xl mx-auto px-6 ">
+            <SearchForm onSubmit={searchParams} />
+            {loading ? (
+            <p>Loading products...</p>
+            ) : error ? (
+            <p>{error}</p>
+            ) : (
+            <div className="max-w-5xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 my-4">
+                {products.map(product => (
+                <ProductCard key={product.id} product={product} />
                 ))}
             </div>
-        </>
+            )}
+        </div>
     )
 
 }
