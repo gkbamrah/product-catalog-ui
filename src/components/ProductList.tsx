@@ -1,7 +1,5 @@
-import React, { useState, useEffect } from 'react'
 import { ProductCard } from './ProductCard'
 import type { Product } from '@/types/Product'
-import { SearchForm } from './SearchForm'
 import.meta.env.VITE_API_URL
 
 interface ProductListProps {
