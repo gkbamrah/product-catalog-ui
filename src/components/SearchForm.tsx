@@ -44,7 +44,7 @@ export const SearchForm:  React.FC<{ onSubmit: (params: { search: string; catego
   }, [])
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-wrap md:flex-nowrap gap-3 my-4 items-center justify-between">
+    <form onSubmit={handleSubmit} className="flex flex-wrap md:flex-nowrap gap-3 my-4 items-center justify-between w-full">
         <div className={inputWrapperClass}>
             <Label htmlFor="search" className="sr-only">Search</Label>
             <Input

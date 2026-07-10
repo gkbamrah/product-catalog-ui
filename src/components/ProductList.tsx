@@ -13,7 +13,7 @@ export const ProductList: React.FC<ProductListProps> = ({ products, loading, err
 
 
     return (
-        <div className="max-w-5xl mx-auto px-6 ">
+        <div className="max-w-5xl mx-auto ">
             {loading ? (
             <p>Loading products...</p>
             ) : error ? (
