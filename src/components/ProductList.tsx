@@ -20,7 +20,7 @@ export const ProductList: React.FC<ProductListProps> = ({ products, loading, err
                     <p> Waking up the server. This can take some time on the first load. Thanks for your patience!</p>)
                     : <p>Loading products...</p>
             ) : error ? (
-            <p>Something went wrong loading products. This can happen if the server is starting up. If the issue persists, please check back later.</p>
+            <p className="text-center">Something went wrong loading products. This can happen if the server is starting up. If the issue persists, please check back later.</p>
             ) : (
             <div className="max-w-5xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 my-4">
                 {products.map(product => (
