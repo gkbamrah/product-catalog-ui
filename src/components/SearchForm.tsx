@@ -17,8 +17,16 @@ export const SearchForm:  React.FC<{ onSubmit: (params: { search: string; catego
     const inputWrapperClass = "flex-1 min-w-[200px]"
 
 
+    const handleCategoryChange = (value: string) => {
+        if (value === "All Categories") {
+            setCategory("")
+        } else {
+            setCategory(value)
+        }
+    }
   const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault()  // prevents page reload
+
     onSubmit({ search, category })
   }
     useEffect(() => {
@@ -36,7 +44,7 @@ export const SearchForm:  React.FC<{ onSubmit: (params: { search: string; catego
   }, [])
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-wrap md:flex-nowrap gap-3 my-4 items-center justify-between">
+    <form onSubmit={handleSubmit} className="flex flex-wrap md:flex-nowrap gap-3 my-4 items-center justify-between w-full">
         <div className={inputWrapperClass}>
             <Label htmlFor="search" className="sr-only">Search</Label>
             <Input
@@ -48,16 +56,18 @@ export const SearchForm:  React.FC<{ onSubmit: (params: { search: string; catego
         </div>
         <div className={inputWrapperClass}>
             <Label htmlFor="category" className="sr-only">Category</Label>
-            <Select onValueChange={(value) => setCategory(value)} >
+            <Select onValueChange={(value) => handleCategoryChange(value)} >
                 <SelectTrigger className="w-full">
                     <SelectValue placeholder="Select a category" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent position="popper">
                 {categories?.map((cat) => (
                     <SelectItem key={cat.id} value={cat.id.toString()}>
                     {cat.name}
                     </SelectItem>
                 ))}
+                <SelectItem value="All Categories">All Categories</SelectItem>
+
                 </SelectContent>
             </Select>
         </div>
