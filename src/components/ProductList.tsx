@@ -17,7 +17,7 @@ export const ProductList: React.FC<ProductListProps> = ({ products, loading, err
         <div className="max-w-5xl mx-auto ">
             {loading ? (
                 showSlowMessage ? (
-                    <p> Waking up the server — this can take up to a minute on first load..."</p>)
+                    <p> Waking up the server. This can take some time on the first load. Thanks for your patience!"</p>)
                     : <p>Loading products...</p>
             ) : error ? (
             <p>{error}</p>
