@@ -5,7 +5,7 @@ import './App.css'
 import { SearchForm } from './components/SearchForm'
 
 function App() {
-  const { products, loading, error, searchParams } = useProducts()
+  const { products, loading, error, searchParams, showSlowMessage } = useProducts()
 
 
   return (
@@ -16,7 +16,7 @@ function App() {
           <SearchForm onSubmit={searchParams} />
         </header>
         <main className="max-w-5xl mx-auto pb-6">
-          <ProductList products={products} loading={loading} error={error} />
+          <ProductList products={products} loading={loading} error={error} showSlowMessage={showSlowMessage} />
         </main>
       </div>
     </>

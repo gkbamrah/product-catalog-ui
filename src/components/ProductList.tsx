@@ -6,16 +6,19 @@ interface ProductListProps {
   products: Product[]
   loading: boolean
   error: string | null
+  showSlowMessage: boolean
 }
 
-export const ProductList: React.FC<ProductListProps> = ({ products, loading, error }) => {
+export const ProductList: React.FC<ProductListProps> = ({ products, loading, error, showSlowMessage }) => {
 
 
 
     return (
         <div className="max-w-5xl mx-auto ">
             {loading ? (
-            <p>Loading products...</p>
+                showSlowMessage ? (
+                    <p> Waking up the server — this can take up to a minute on first load..."</p>)
+                    : <p>Loading products...</p>
             ) : error ? (
             <p>{error}</p>
             ) : (
