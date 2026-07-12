@@ -1,73 +1,47 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Product Catalog — Frontend
 
-Currently, two official plugins are available:
+A React + TypeScript frontend for browsing, searching, and filtering a product catalog. Built to consume the [Product Catalog API](https://product-catalog-5fux.onrender.com/).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+**Live site:** https://product-catalog-ui-six.vercel.app
 
-## React Compiler
+## Tech Stack
+React, TypeScript, Vite, Tailwind CSS, shadcn/ui
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Features
+- Browse products in a responsive grid layout
+- Search products by name
+- Filter products by category
+- Handles loading and error states, including backend cold-start delays (see note below)
 
-## Expanding the ESLint configuration
+> Note: The backend is hosted on Render's free tier, which spins down after inactivity. The first load may take 30-60 seconds while the server wakes up.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## How to run locally
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Clone and enter repo:
+```
+git clone https://github.com/gkbamrah/product-catalog-ui.git  
+cd product-catalog-ui
+```
+Install dependencies:
+```
+npm install
+```
+Create a `.env` file with:
+```
+VITE_API_URL=http://localhost:8000
+```
+(This assumes the backend is running locally on its default port. Adjust if you've configured Django to run on a different port, or point this at the deployed backend URL instead.)
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Run the dev server:
+```
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## AI Usage
+AI was used in the following ways:
+- Suggestions for component structure, TypeScript typing patterns, and Tailwind/shadcn styling
+- Debugging assistance for deployment configuration (CORS, environment variables, build errors)
+- Populating the gitignore and readme files
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+**No code was copied directly from AI sources. All suggestions made by AI tools were thoroughly researched and understood before including them.**
